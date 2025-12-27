@@ -1,31 +1,16 @@
-const inputItem = document.querySelector("#input-item");
+import { criarItemDaLista } from "./scripts/criarItemDaLista.js";
+import verificarListaVazia from "./scripts/verificarListaVazia.js";
+
 const listaDeCompras = document.querySelector("#lista-de-compras");
-let contador = 0;
+
 
 const botaoAdicionar = document.querySelector("#adicionar-item");
 
 botaoAdicionar.addEventListener("click", (evento) => {
   evento.preventDefault();
-  if (inputItem.value === "") {
-    alert("Por favor, insira um item!");
-    return;
-  }
-
-  const itemDaLista = document.createElement("li");
-  const containerItemDaLista = document.createElement("div");
-  containerItemDaLista.classList.add("lista-item-container");
-  const inputCheckbox = document.createElement("input");
-  inputCheckbox.type = "checkbox";
-  inputCheckbox.id = "checkbox-" + contador++;
-  const nomeItem = document.createElement("p");
-  nomeItem.innerText = inputItem.value;
-
-  containerItemDaLista.appendChild(inputCheckbox);
-  containerItemDaLista.appendChild(nomeItem);
-
-  itemDaLista.appendChild(containerItemDaLista);
-  listaDeCompras.appendChild(itemDaLista);
-
-  const diaDaSemana = new Date();
-  console.log(diaDaSemana);
+  const itemDaLista = criarItemDaLista();
+  listaDeCompras.appendChild(itemDaLista);  
+  verificarListaVazia(listaDeCompras);
 });
+
+verificarListaVazia(listaDeCompras);
